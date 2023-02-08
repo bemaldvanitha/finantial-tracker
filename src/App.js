@@ -5,11 +5,14 @@ import Home from "./pages/home/Home";
 import SignUp from "./pages/signup/SignUp";
 import LogIn from "./pages/login/LogIn";
 import NavBar from "./components/NavBar";
+import { useAuthContext } from "./hooks/useAuthContext";
 
 function App() {
+  const { authIsReady } = useAuthContext();
+
   return (
     <div className="App">
-      <BrowserRouter>
+      { authIsReady && <BrowserRouter>
         <NavBar/>
         <Switch>
           <Route exact={true} path={'/'}>
@@ -22,7 +25,7 @@ function App() {
             <LogIn/>
           </Route>
         </Switch>
-      </BrowserRouter>
+      </BrowserRouter> }
     </div>
   );
 }
